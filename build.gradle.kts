@@ -48,7 +48,7 @@ tasks.named<BootBuildImage>("bootBuildImage") {
         "LANGUAGE" to "ja_JP:ja",
         "LC_ALL" to "ja_JP.UTF-8"
     )
-    imageName = project.name
+    imageName = project.name + ":" + project.version
     docker {
         publishRegistry {
             username = project.findProperty("registryUsername")?.toString()
