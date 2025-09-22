@@ -1,4 +1,3 @@
-import org.gradle.kotlin.dsl.assign
 import org.gradle.kotlin.dsl.named
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
 
