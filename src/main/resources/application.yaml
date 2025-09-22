@@ -1,9 +1,6 @@
 spring:
   application:
     name: config-service
-
-  config:
-    additional-location: "classpath:/local/application-local.yaml"
   cloud:
     config:
       server:
@@ -13,8 +10,11 @@ spring:
           timeout: 5
           clone-on-start: true
           force-pull: true
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
 server:
   port: 8888
+  shutdown: graceful
   tomcat:
     connection-timeout: 2s
     keep-alive-timeout: 15s

@@ -35,6 +35,11 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew build
+      - name: Validate Kubernetes manifest
+        uses: "stackrox/kube-linter-action@v1.0.7"
+        with:
+          directory: k8s
+          fail-on-invalid-resource: true
   package:
     name: "Package and Publish"
     if: "${{ github.ref == 'refs/heads/main'}}"
