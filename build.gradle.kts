@@ -9,7 +9,7 @@ plugins {
 
 group = "com.polarbookshop"
 version = "0.0.1-SNAPSHOT"
-description = "Cnetralizes the application configuration"
+description = "Centralizes the application configuration"
 
 java {
 	toolchain {
