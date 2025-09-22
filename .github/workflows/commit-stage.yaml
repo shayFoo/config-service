@@ -63,10 +63,9 @@ jobs:
         uses: "anchore/scan-action@v6"
         id: scan
         with:
-          image-reference: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}"
+          image: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}"
           fail-build: "true"
           severity-cutoff: high
-          acs-report-enable: true
       - name: "Upload vulnerability report"
         uses: "github/codeql-action/upload-sarif@v3"
         with:
