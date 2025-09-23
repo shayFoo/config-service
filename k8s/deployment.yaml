@@ -13,12 +13,11 @@ spec:
     metadata:
       labels:
         app: config-service
-    securityContext:
-      runAsNonRoot: true
-      runAsUser: 1000
-      runAsGroup: 1000
-      volumes:
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: config-service
           image: config-service:0.0.1-SNAPSHOT
@@ -32,10 +31,6 @@ spec:
           env:
             - name: BPL_JVM_THREAD_COUNT
               value: "50"
-            - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://polar-postgres/polardb_catalog
-            - name: SPRING_PROFILES_ACTIVE
-              value: testdata
             - name: HOME
               value: /home/cnb
           resources:
