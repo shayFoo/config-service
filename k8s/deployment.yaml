@@ -4,6 +4,10 @@ metadata:
   name: config-service
   labels:
     app: config-service
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9001"
+    prometheus.io/path: "/actuator/prometheus"
 spec:
   replicas: 1
   selector:

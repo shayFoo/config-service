@@ -23,6 +23,9 @@ spring:
         show-components: always
         probes:
           enabled: true
+    metrics:
+      tags:
+        application: ${spring.application.name}
 server:
   port: 8888
   shutdown: graceful
