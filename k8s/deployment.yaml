@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: config-service
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "8888"
+      prometheus.io/path: "/actuator/prometheus"
     spec:
       securityContext:
         runAsNonRoot: true
@@ -27,7 +31,7 @@ spec:
               exec:
                 command: [ "sh", "-c", "sleep 5" ]
           ports:
-            - containerPort: 9001
+            - containerPort: 8888
           env:
             - name: BPL_JVM_THREAD_COUNT
               value: "50"
@@ -51,6 +55,18 @@ spec:
             readOnlyRootFilesystem: true
             runAsUser: 1000
             runAsGroup: 1000
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8888
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8888
+            initialDelaySeconds: 10
+            periodSeconds: 5
       volumes:
         - name: tmp
           emptyDir: { }

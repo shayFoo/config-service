@@ -12,6 +12,28 @@ spring:
           force-pull: true
   lifecycle:
     timeout-per-shutdown-phase: 15s
+management:
+    endpoints:
+      web:
+        exposure:
+          include: health,prometheus
+    endpoint:
+      health:
+        show-details: always
+        show-components: always
+        probes:
+          enabled: true
+    metrics:
+      tags:
+        application: ${spring.application.name}
+    tracing:
+      sampling:
+        probability: 1.0
+    otlp:
+      tracing:
+        endpoint: http://localhost:4318/v1/traces
+        compression: none
+        timeout: 10s
 server:
   port: 8888
   shutdown: graceful
