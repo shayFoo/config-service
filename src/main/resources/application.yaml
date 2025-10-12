@@ -12,7 +12,7 @@ spring:
           force-pull: true
   lifecycle:
     timeout-per-shutdown-phase: 15s
-  management:
+management:
     endpoints:
       web:
         exposure:
@@ -26,6 +26,14 @@ spring:
     metrics:
       tags:
         application: ${spring.application.name}
+    tracing:
+      sampling:
+        probability: 1.0
+    otlp:
+      tracing:
+        endpoint: http://localhost:4318/v1/traces
+        compression: none
+        timeout: 10s
 server:
   port: 8888
   shutdown: graceful
